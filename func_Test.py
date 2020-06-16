@@ -2,15 +2,11 @@ def get_sieved_list(x):
     dp = [1 if item % 2 == 0 else 0 for item in range(x+1)]
     dp[:3] = [2,1,1]
 
-    prim_candi = 2
-    while True:
-        prim_candi += 1
+    for prim_candi in range(3, x+1):
         temp_num = prim_candi
         while temp_num <= x:
             dp[temp_num] += 1
             temp_num += prim_candi
-        
-
         if prim_candi >= x:
             return [i  for i in range(x+1) if dp[i] == 1]
 
@@ -29,4 +25,4 @@ def chk(A_list, B_list):
     return res
 
 if __name__ == "__main__":
-    print(chk(list(range(10**4)), list(range(10**4-13, 2*10**4))))
+    print(len(get_sieved_list(100000)))
