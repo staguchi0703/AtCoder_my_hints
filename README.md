@@ -2,8 +2,91 @@
 
 ## DFS
 
+* numpy.whereとか使いたくなるが、激重なのでNG
+* collection.queとlistのスライスで攻めるのが◎
+
+```python
+
+import collections
+H, W = [int(item) for item in input().split()]
+grid = [[item for item in input()] for _ in range(H)]
+
+stack = collections.deque()
+fp = [[0 for _ in range(W)] for _ in range(H)]
+
+
+
+stack.append(start) #任意の開始ポイント
+is_found = False
+
+fp[start[0]][start[1]] = 1
+goto = [[1, 0], [0, 1], [-1, 0], [0, -1]]
+
+
+while stack:
+    temp = stack.pop()
+    y, x = temp
+
+    if grid[y][x] == 'g':
+        is_found = True
+        stack = False
+        # 探索終了条件
+    elif grid[y][x] == '#':
+        pass
+        #障害物
+    else:
+        for i in range(4):
+            nx = x + goto[i][0]
+            ny = y + goto[i][1]
+
+            if 0 <= nx <= W-1 and 0 <= ny <= H-1:
+                if fp[ny][nx] == 0:
+                    stack.append([ny, nx])
+                    fp[ny][nx] = fp[y][x] + 1
+
+print('Yes') if is_found else print('No')
+
+```
+
 
 ## BFS
+
+```python
+
+import collections
+H, W = [int(item) for item in input().split()]
+grid = [[item for item in input()] for _ in range(H)]
+
+fp = [[-1 for _ in range(W)] for _ in range(H)]
+
+# position[y, x]
+# start [0,0]
+# goal [H-1, W-1]
+
+que = collections.deque([[0, 0, 1]])
+fp[0][0] = 1
+next_y_x = [[0, 1], [1, 0], [-1, 0], [0, -1]]
+is_found = False
+
+while que:
+    temp = que.popleft()
+
+    if temp[0] == H-1 and temp[1] == W-1:
+        pass_num = temp[2]
+        que = False
+        is_found = True
+    else:
+        for dy, dx in next_y_x:
+            ny = temp[0] + dy
+            nx = temp[1] + dx
+
+            if 0 <= ny <= H-1 and 0 <= nx <= W-1:
+                if grid[ny][nx] == '.' and fp[ny][nx] == -1:
+                    que.append([ny, nx, temp[2]+1])
+                    fp[ny][nx] = temp[2] + 1
+
+print(pass_num) if is_found else print(-1)
+```
 
 ## エラストテネスの篩
 
