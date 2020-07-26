@@ -153,7 +153,15 @@ def chk(A_list, B_list):
 
 ## 浮動小数点の扱い
 
+* 繰り上げ
+* 繰り下げ
+* 四捨五入
+
 ## 大文字小文字
+
+* str.lower()
+* str.upper()
+* `import string; sting.ascii_lowercase`
 
 
 ## ループ中にリストを削除したり挿入したり
@@ -186,3 +194,10 @@ for i in range(2**(N)):
         if ((i >> j) & 1):
             pass
 ```
+
+## 株価チャートの理想的な売買
+
+* もしすべての価格が分かっていて、手数料がなかった場合の最良
+  * 価格が+になった日に全部売る
+  * その前日に全部買う
+* [m_solutions2020_d](https://atcoder.jp/contests/m-solutions2020/tasks/m_solutions2020_d)
