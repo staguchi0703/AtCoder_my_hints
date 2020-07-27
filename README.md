@@ -201,3 +201,28 @@ for i in range(2**(N)):
   * 価格が+になった日に全部売る
   * その前日に全部買う
 * [m_solutions2020_d](https://atcoder.jp/contests/m-solutions2020/tasks/m_solutions2020_d)
+
+## 二分探索
+
+### ポイント
+
+* `from bisect import bisect_left as bis`で呼びだす
+* `temp_index = bis(List, val)`でList中のvalに一番近いindexを見つけてくる
+* Listの範囲外だと、0かNが帰ってくるので、Nが帰ったらList[N]がindex errorするので注意
+
+```python
+from bisect import bisect_left as bis
+NA, NB = [int(item) for item in input().split()]
+
+As = [int(item) for item in input().split()]
+Bs = [int(item) for item in input().split()]
+Bs.sort()
+
+cnt_A_and_B = 0
+for item in As:
+    b_index = bis(Bs, item)
+    if b_index < NB: 
+        if item == Bs[b_index]:
+            cnt_A_and_B +=1
+
+```
