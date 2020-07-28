@@ -226,3 +226,11 @@ for item in As:
             cnt_A_and_B +=1
 
 ```
+
+## `collections.Counter()`
+
+* 返り値はCounterオブジェクト
+* ほぼdictだと思って良いが、ないkeyを指定してもerrorにならず0を返す
+* メソッド
+  * `most_common(3)`頻出top3
+  * `elements()`keyを連結して出力
