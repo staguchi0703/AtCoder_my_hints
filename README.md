@@ -204,7 +204,7 @@ for i in range(2**(N)):
 
 ## 二分探索
 
-### ポイント
+### 見つけてくる系ポイント
 
 * `from bisect import bisect_left as bis`で呼びだす
 * `temp_index = bis(List, val)`でList中のvalに一番近いindexを見つけてくる
@@ -226,6 +226,32 @@ for item in As:
             cnt_A_and_B +=1
 
 ```
+
+### めぐる式二分探索
+
+* OKを探してくる探索
+* 小さいとNGで大きいとOKなので、最小の解を探す方法
+* 最大ならOKとNG逆に描けばいい
+
+```python
+ng = 0
+ok = max(As)
+def f(mid):
+    # 判定式
+    return mid
+K #狙いの値
+
+while ok - ng > 1:
+    mid = int((ng + ok)/2)
+
+    if f(mid) > K:
+        ng = mid
+    else:
+        ok = mid
+            
+print(ok)
+```
+
 
 ## `collections.Counter()`
 
