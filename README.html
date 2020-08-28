@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="atcodermyhints">AtCoder_my_hints</h1>
+<h2 id="dfs">DFS</h2>
+<ul>
+<li>numpy.whereとか使いたくなるが、激重なのでNG</li>
+<li>collection.queとlistのスライスで攻めるのが◎</li>
+</ul>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">import</span> collections
+H, W = [int(item) <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> input().split()]
+grid = [[item <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> input()] <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(H)]
+
+stack = collections.deque()
+fp = [[<span class="hljs-number">0</span> <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(W)] <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(H)]
+
+
+
+stack.append(start) <span class="hljs-comment">#任意の開始ポイント</span>
+is_found = <span class="hljs-literal">False</span>
+
+fp[start[<span class="hljs-number">0</span>]][start[<span class="hljs-number">1</span>]] = <span class="hljs-number">1</span>
+goto = [[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>], [<span class="hljs-number">-1</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">-1</span>]]
+
+
+<span class="hljs-keyword">while</span> stack:
+    temp = stack.pop()
+    y, x = temp
+
+    <span class="hljs-keyword">if</span> grid[y][x] == <span class="hljs-string">'g'</span>:
+        is_found = <span class="hljs-literal">True</span>
+        stack = <span class="hljs-literal">False</span>
+        <span class="hljs-comment"># 探索終了条件</span>
+    <span class="hljs-keyword">elif</span> grid[y][x] == <span class="hljs-string">'#'</span>:
+        <span class="hljs-keyword">pass</span>
+        <span class="hljs-comment">#障害物</span>
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">4</span>):
+            nx = x + goto[i][<span class="hljs-number">0</span>]
+            ny = y + goto[i][<span class="hljs-number">1</span>]
+
+            <span class="hljs-keyword">if</span> <span class="hljs-number">0</span> &lt;= nx &lt;= W<span class="hljs-number">-1</span> <span class="hljs-keyword">and</span> <span class="hljs-number">0</span> &lt;= ny &lt;= H<span class="hljs-number">-1</span>:
+                <span class="hljs-keyword">if</span> fp[ny][nx] == <span class="hljs-number">0</span>:
+                    stack.append([ny, nx])
+                    fp[ny][nx] = fp[y][x] + <span class="hljs-number">1</span>
+
+print(<span class="hljs-string">'Yes'</span>) <span class="hljs-keyword">if</span> is_found <span class="hljs-keyword">else</span> print(<span class="hljs-string">'No'</span>)
+
+</div></code></pre>
+<h2 id="bfs">BFS</h2>
+<h3 id="%E5%85%B8%E5%9E%8B">典型</h3>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">import</span> collections
+H, W = [int(item) <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> input().split()]
+grid = [[item <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> input()] <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(H)]
+
+fp = [[<span class="hljs-number">-1</span> <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(W)] <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(H)]
+
+<span class="hljs-comment"># position[y, x]</span>
+<span class="hljs-comment"># start [0,0]</span>
+<span class="hljs-comment"># goal [H-1, W-1]</span>
+
+que = collections.deque([[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>]])
+fp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>
+next_y_x = [[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">-1</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">-1</span>]]
+is_found = <span class="hljs-literal">False</span>
+
+<span class="hljs-keyword">while</span> que:
+    temp = que.popleft()
+
+    <span class="hljs-keyword">if</span> temp[<span class="hljs-number">0</span>] == H<span class="hljs-number">-1</span> <span class="hljs-keyword">and</span> temp[<span class="hljs-number">1</span>] == W<span class="hljs-number">-1</span>:
+        pass_num = temp[<span class="hljs-number">2</span>]
+        que = <span class="hljs-literal">False</span>
+        is_found = <span class="hljs-literal">True</span>
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-keyword">for</span> dy, dx <span class="hljs-keyword">in</span> next_y_x:
+            ny = temp[<span class="hljs-number">0</span>] + dy
+            nx = temp[<span class="hljs-number">1</span>] + dx
+
+            <span class="hljs-keyword">if</span> <span class="hljs-number">0</span> &lt;= ny &lt;= H<span class="hljs-number">-1</span> <span class="hljs-keyword">and</span> <span class="hljs-number">0</span> &lt;= nx &lt;= W<span class="hljs-number">-1</span>:
+                <span class="hljs-keyword">if</span> grid[ny][nx] == <span class="hljs-string">'.'</span> <span class="hljs-keyword">and</span> fp[ny][nx] == <span class="hljs-number">-1</span>:
+                    que.append([ny, nx, temp[<span class="hljs-number">2</span>]+<span class="hljs-number">1</span>])
+                    fp[ny][nx] = temp[<span class="hljs-number">2</span>] + <span class="hljs-number">1</span>
+
+print(pass_num) <span class="hljs-keyword">if</span> is_found <span class="hljs-keyword">else</span> print(<span class="hljs-number">-1</span>)
+</div></code></pre>
+<h3 id="01bfs">01BFS</h3>
+<ul>
+<li>優先高いものは前から追加DFS的に使う</li>
+<li>優先低いものは後ろに追加BFS的に使う</li>
+<li>例　ABC176D<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">resolve</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-string">'''
+    code here
+    '''</span>
+    <span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> deque
+
+    H, W = [int(item) <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> input().split()]
+    Ch, Cw = [int(item)<span class="hljs-number">-1</span> <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> input().split()]
+    Dh, Dw = [int(item)<span class="hljs-number">-1</span> <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> input().split()]
+    grid = [input() <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(H)]
+    max_num = <span class="hljs-number">10</span>**<span class="hljs-number">6</span>
+    fp = [[max_num] * W <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(H)]
+
+    que = deque([[Ch, Cw, <span class="hljs-number">0</span>]])
+    fp[Ch][Cw] = <span class="hljs-number">0</span>
+
+    walk = [(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), (<span class="hljs-number">0</span>, <span class="hljs-number">-1</span>), (<span class="hljs-number">-1</span>, <span class="hljs-number">0</span>), (<span class="hljs-number">1</span>, <span class="hljs-number">0</span>)]
+    warp = [(i, j) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">-2</span>, <span class="hljs-number">3</span>) <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(<span class="hljs-number">-2</span>, <span class="hljs-number">3</span>) <span class="hljs-keyword">if</span> (i, j) <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> [(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>)] + walk]
+
+    <span class="hljs-keyword">while</span> que:
+        y, x, w_num = que.popleft()
+
+        <span class="hljs-keyword">for</span> dy, dx <span class="hljs-keyword">in</span> walk:
+            ny = y + dy
+            nx = x + dx
+
+            <span class="hljs-keyword">if</span> <span class="hljs-number">0</span> &lt;= ny &lt;= H<span class="hljs-number">-1</span> <span class="hljs-keyword">and</span> <span class="hljs-number">0</span> &lt;= nx &lt;= W<span class="hljs-number">-1</span> <span class="hljs-keyword">and</span> grid[ny][nx] == <span class="hljs-string">'.'</span> <span class="hljs-keyword">and</span> fp[ny][nx] &gt; w_num:
+                que.appendleft([ny, nx, w_num])
+                fp[ny][nx] = w_num
+
+        <span class="hljs-keyword">for</span> dy, dx <span class="hljs-keyword">in</span> warp:
+            ny = y + dy
+            nx = x + dx
+            nw = w_num +<span class="hljs-number">1</span>
+
+            <span class="hljs-keyword">if</span> <span class="hljs-number">0</span> &lt;= ny &lt;= H<span class="hljs-number">-1</span> <span class="hljs-keyword">and</span> <span class="hljs-number">0</span> &lt;= nx &lt;= W<span class="hljs-number">-1</span> <span class="hljs-keyword">and</span> grid[ny][nx] == <span class="hljs-string">'.'</span> <span class="hljs-keyword">and</span> fp[ny][nx] &gt; nw:
+                que.append([ny, nx, nw])
+                fp[ny][nx] = nw
+
+    <span class="hljs-keyword">if</span> fp[Dh][Dw] != max_num:
+        print(fp[Dh][Dw])
+    <span class="hljs-keyword">else</span>:
+        print(<span class="hljs-number">-1</span>)
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    resolve()
+
+</div></code></pre>
+</li>
+</ul>
+<h2 id="%E3%82%A8%E3%83%A9%E3%82%B9%E3%83%88%E3%83%86%E3%83%8D%E3%82%B9%E3%81%AE%E7%AF%A9">エラストテネスの篩</h2>
+<h3 id="x%E3%81%BE%E3%81%A7%E3%81%AE%E7%B4%A0%E6%95%B0%E3%81%AE%E3%83%AA%E3%82%B9%E3%83%88%E3%82%92%E6%B1%82%E3%82%81%E3%82%8B">Xまでの素数のリストを求める</h3>
+<pre class="hljs"><code><div>
+def get_sieved_list(x):
+    dp = [1 if item % 2 == 0 else 0 for item in range(x+1)]
+    dp[:3] = [2,1,1]
+
+    for prim_candi in range(3, x+1):
+        temp_num = prim_candi
+        while temp_num &lt;= x:
+            dp[temp_num] += 1
+            temp_num += prim_candi
+        if prim_candi &gt;= x:
+            return [i  for i in range(x+1) if dp[i] == 1]
+</div></code></pre>
+<h3 id="%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%9F%E3%83%86%E3%82%AF%E3%83%8B%E3%83%83%E3%82%AF">使用したテクニック</h3>
+<ul>
+<li>dpリストで値を調べた数を数える</li>
+<li>dpリストははじめから0,1と偶数は検査済み</li>
+<li>forで0,1,2を除いた素数の候補を調べる</li>
+<li>while文の中でdpをindex参照で操作するので、<code>O(1)</code>の時間</li>
+<li>倍数は<code>temp_num += primt_candi</code>で作って、dpに記録する</li>
+</ul>
+<h2 id="%E5%AD%98%E5%9C%A8%E3%81%AE%E6%9C%89%E7%84%A1%E3%82%84%E6%95%B0%E3%82%92list%E3%81%AEindex%E3%81%A7%E9%AB%98%E9%80%9F%E3%81%AB%E8%AA%BF%E3%81%B9%E3%82%8B">存在の有無や数をlistのindexで高速に調べる</h2>
+<p><code>A_list</code>の中に<code>B_list</code>があるか判別</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># O(n^2)のためNG</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">chk_ng</span><span class="hljs-params">(A_list, B_list)</span>:</span>
+    res = []
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> A_list:
+        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> B_list:
+            <span class="hljs-keyword">if</span> i == j:
+                res.append(i)
+    <span class="hljs-keyword">return</span> res
+
+<span class="hljs-comment"># 高速化O(N)</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">chk</span><span class="hljs-params">(A_list, B_list)</span>:</span>
+    A_max = max(A_list)
+    dp = [<span class="hljs-number">0</span> <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(A_max+<span class="hljs-number">1</span>)]
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> A_list:
+        dp[i] += <span class="hljs-number">1</span>
+
+    res = []
+    <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> B_list:
+        <span class="hljs-keyword">if</span> j &lt;= A_max:
+            <span class="hljs-keyword">if</span> dp[j]:
+                res.append(j)
+    <span class="hljs-keyword">return</span> res
+</div></code></pre>
+<h3 id="%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%9F%E3%83%86%E3%82%AF%E3%83%8B%E3%83%83%E3%82%AF">使用したテクニック</h3>
+<ul>
+<li>for文の中に'O(N)'の処理が入らないように、A_listの有無はdpリストのスライス'O(1)'で判別した</li>
+<li>DPのリストのindexが範囲を超えないようにA_listの最大値以下で検索した</li>
+<li>A_listの最大値を求める計算がfor文の中に入ると'O(N)'の処理を毎回してしまうので、for文の外で値を得て使用した</li>
+</ul>
+<h2 id="%E6%B5%AE%E5%8B%95%E5%B0%8F%E6%95%B0%E7%82%B9%E3%81%AE%E6%89%B1%E3%81%84">浮動小数点の扱い</h2>
+<ul>
+<li>繰り上げ</li>
+<li>繰り下げ</li>
+<li>四捨五入</li>
+</ul>
+<h2 id="%E5%A4%A7%E6%96%87%E5%AD%97%E5%B0%8F%E6%96%87%E5%AD%97">大文字小文字</h2>
+<ul>
+<li>str.lower()</li>
+<li>str.upper()</li>
+<li><code>import string; sting.ascii_lowercase</code></li>
+</ul>
+<h2 id="%E3%83%AB%E3%83%BC%E3%83%97%E4%B8%AD%E3%81%AB%E3%83%AA%E3%82%B9%E3%83%88%E3%82%92%E5%89%8A%E9%99%A4%E3%81%97%E3%81%9F%E3%82%8A%E6%8C%BF%E5%85%A5%E3%81%97%E3%81%9F%E3%82%8A">ループ中にリストを削除したり挿入したり</h2>
+<h2 id="%E7%B4%A0%E5%9B%A0%E6%95%B0%E5%88%86%E8%A7%A3">素因数分解</h2>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">prime_factorize</span><span class="hljs-params">(n)</span>:</span>
+    a = []
+    <span class="hljs-keyword">while</span> n % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>:
+        a.append(<span class="hljs-number">2</span>)
+        n //= <span class="hljs-number">2</span>
+    f = <span class="hljs-number">3</span>
+    <span class="hljs-keyword">while</span> f * f &lt;= n:
+        <span class="hljs-keyword">if</span> n % f == <span class="hljs-number">0</span>:
+            a.append(f)
+            n //= f
+        <span class="hljs-keyword">else</span>:
+            f += <span class="hljs-number">2</span>
+    <span class="hljs-keyword">if</span> n != <span class="hljs-number">1</span>:
+        a.append(n)
+    <span class="hljs-keyword">return</span> a
+</div></code></pre>
+<h2 id="bit%E5%85%A8%E6%8E%A2%E7%B4%A2">bit全探索</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>**(N)):
+    <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(N):
+        <span class="hljs-keyword">if</span> ((i &gt;&gt; j) &amp; <span class="hljs-number">1</span>):
+            <span class="hljs-keyword">pass</span>
+</div></code></pre>
+<h2 id="%E6%A0%AA%E4%BE%A1%E3%83%81%E3%83%A3%E3%83%BC%E3%83%88%E3%81%AE%E7%90%86%E6%83%B3%E7%9A%84%E3%81%AA%E5%A3%B2%E8%B2%B7">株価チャートの理想的な売買</h2>
+<ul>
+<li>もしすべての価格が分かっていて、手数料がなかった場合の最良
+<ul>
+<li>価格が+になった日に全部売る</li>
+<li>その前日に全部買う</li>
+</ul>
+</li>
+<li><a href="https://atcoder.jp/contests/m-solutions2020/tasks/m_solutions2020_d">m_solutions2020_d</a></li>
+</ul>
+<h2 id="%E4%BA%8C%E5%88%86%E6%8E%A2%E7%B4%A2">二分探索</h2>
+<h3 id="%E8%A6%8B%E3%81%A4%E3%81%91%E3%81%A6%E3%81%8F%E3%82%8B%E7%B3%BB%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88">見つけてくる系ポイント</h3>
+<ul>
+<li><code>from bisect import bisect_left as bis</code>で呼びだす</li>
+<li><code>temp_index = bis(List, val)</code>でList中のvalに一番近いindexを見つけてくる</li>
+<li>Listの範囲外だと、0かNが帰ってくるので、Nが帰ったらList[N]がindex errorするので注意</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">from</span> bisect <span class="hljs-keyword">import</span> bisect_left <span class="hljs-keyword">as</span> bis
+NA, NB = [int(item) <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> input().split()]
+
+As = [int(item) <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> input().split()]
+Bs = [int(item) <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> input().split()]
+Bs.sort()
+
+cnt_A_and_B = <span class="hljs-number">0</span>
+<span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> As:
+    b_index = bis(Bs, item)
+    <span class="hljs-keyword">if</span> b_index &lt; NB: 
+        <span class="hljs-keyword">if</span> item == Bs[b_index]:
+            cnt_A_and_B +=<span class="hljs-number">1</span>
+
+</div></code></pre>
+<h3 id="%E3%82%81%E3%81%90%E3%82%8B%E5%BC%8F%E4%BA%8C%E5%88%86%E6%8E%A2%E7%B4%A2">めぐる式二分探索</h3>
+<ul>
+<li>OKを探してくる探索</li>
+<li>小さいとNGで大きいとOKなので、最小の解を探す方法</li>
+<li>最大ならOKとNG逆に描けばいい</li>
+</ul>
+<pre class="hljs"><code><div>ng = <span class="hljs-number">0</span>
+ok = max(As)
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f</span><span class="hljs-params">(mid)</span>:</span>
+    <span class="hljs-comment"># 判定式</span>
+    <span class="hljs-keyword">return</span> mid
+K <span class="hljs-comment">#狙いの値</span>
+
+<span class="hljs-keyword">while</span> ok - ng &gt; <span class="hljs-number">1</span>:
+    mid = int((ng + ok)/<span class="hljs-number">2</span>)
+
+    <span class="hljs-keyword">if</span> f(mid) &gt; K:
+        ng = mid
+    <span class="hljs-keyword">else</span>:
+        ok = mid
+            
+print(ok)
+</div></code></pre>
+<h2 id="collectionscounter"><code>collections.Counter()</code></h2>
+<ul>
+<li>返り値はCounterオブジェクト</li>
+<li>ほぼdictだと思って良いが、ないkeyを指定してもerrorにならず0を返す</li>
+<li>メソッド
+<ul>
+<li><code>most_common(3)</code>頻出top3</li>
+<li><code>elements()</code>keyを連結して出力</li>
+</ul>
+</li>
+</ul>
+<h2 id="a%E3%82%92%E4%BD%BF%E3%81%86%E3%81%A8b%E3%81%8C%E4%BD%BF%E3%81%88%E3%81%AA%E3%81%8F%E3%81%AA%E3%82%8B%E3%83%AB%E3%83%BC%E3%83%AB">Aを使うとBが使えなくなるルール</h2>
+<ul>
+<li>実は分かり訳す使っておいて、後から過去にさかのぼってルールを満たすように変更しても答えはあっている。
+<ul>
+<li>結果を知ってから時間を巻き戻して制約に合わせればよい。</li>
+</ul>
+</li>
+<li>例えば、Aをを使うと10点えるが、Bを使うと50点得る。ただし、Bを使うとAが使えない。</li>
+</ul>
+<h2 id="%E8%A6%81%E7%B4%A0%E3%81%8C%E5%A4%9A%E3%81%84%E3%81%A8%E3%81%8Dset%E3%82%92%E4%BD%BF%E3%81%86">要素が多いときSetを使う</h2>
+<ul>
+<li>配列で要素を作ると要素数が$10^8$超える場合、setで要素の座標を持っておく</li>
+<li>setのin演算子はオーダ1の演算で済む</li>
+<li>例　ABC176E</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">resolve</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-string">'''
+    code here
+    '''</span>
+    H, W, M = [int(item) <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> input().split()]
+    targets = [[int(item) <span class="hljs-number">-1</span> <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> input().split()] <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(M)]
+
+    col = [<span class="hljs-number">0</span> <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(H)]
+    row = [<span class="hljs-number">0</span> <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(W)]
+
+    bomb_set = set()
+    <span class="hljs-comment"># 配列で要素を作ると要素数が$10^8$超える場合、setで要素の座標を持っておく</span>
+
+
+    <span class="hljs-keyword">for</span> i,j <span class="hljs-keyword">in</span> targets:
+        col[i] += <span class="hljs-number">1</span>
+        row[j] += <span class="hljs-number">1</span>
+        bomb_set.add((i,j))
+
+    max_col = max(col)
+    max_row = max(row)
+    max_col_index = []
+    max_row_index = []
+
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(H):
+        <span class="hljs-keyword">if</span> col[i] == max_col:
+            max_col_index.append(i)
+
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(W):
+        <span class="hljs-keyword">if</span> row[i] == max_row:
+            max_row_index.append(i)
+
+    res = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> max_col_index:
+        <span class="hljs-keyword">for</span> jtem <span class="hljs-keyword">in</span> max_row_index:
+            <span class="hljs-keyword">if</span> (item,jtem) <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> bomb_set:
+                <span class="hljs-comment"># setのin演算子はオーダ1</span>
+                res =max_col + max_row
+                <span class="hljs-keyword">break</span>
+        <span class="hljs-keyword">else</span>:
+            res = max(res, max_col + max_row <span class="hljs-number">-1</span> )
+    print(res)
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    resolve()
+
+</div></code></pre>
+
+</body>
+</html>

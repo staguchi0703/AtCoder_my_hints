@@ -51,6 +51,8 @@ print('Yes') if is_found else print('No')
 
 ## BFS
 
+### 典型
+
 ```python
 
 import collections
@@ -87,6 +89,62 @@ while que:
 
 print(pass_num) if is_found else print(-1)
 ```
+
+### 01BFS
+
+* 優先高いものは前から追加DFS的に使う
+* 優先低いものは後ろに追加BFS的に使う
+* 例　ABC176D
+  ```python
+  def resolve():
+      '''
+      code here
+      '''
+      from collections import deque
+
+      H, W = [int(item) for item in input().split()]
+      Ch, Cw = [int(item)-1 for item in input().split()]
+      Dh, Dw = [int(item)-1 for item in input().split()]
+      grid = [input() for _ in range(H)]
+      max_num = 10**6
+      fp = [[max_num] * W for _ in range(H)]
+
+      que = deque([[Ch, Cw, 0]])
+      fp[Ch][Cw] = 0
+
+      walk = [(0, 1), (0, -1), (-1, 0), (1, 0)]
+      warp = [(i, j) for i in range(-2, 3) for j in range(-2, 3) if (i, j) not in [(0, 0)] + walk]
+
+      while que:
+          y, x, w_num = que.popleft()
+
+          for dy, dx in walk:
+              ny = y + dy
+              nx = x + dx
+
+              if 0 <= ny <= H-1 and 0 <= nx <= W-1 and grid[ny][nx] == '.' and fp[ny][nx] > w_num:
+                  que.appendleft([ny, nx, w_num])
+                  fp[ny][nx] = w_num
+
+          for dy, dx in warp:
+              ny = y + dy
+              nx = x + dx
+              nw = w_num +1
+
+              if 0 <= ny <= H-1 and 0 <= nx <= W-1 and grid[ny][nx] == '.' and fp[ny][nx] > nw:
+                  que.append([ny, nx, nw])
+                  fp[ny][nx] = nw
+
+      if fp[Dh][Dw] != max_num:
+          print(fp[Dh][Dw])
+      else:
+          print(-1)
+
+  if __name__ == "__main__":
+      resolve()
+
+  ```
+
 
 ## エラストテネスの篩
 
@@ -266,4 +324,65 @@ print(ok)
 * 実は分かり訳す使っておいて、後から過去にさかのぼってルールを満たすように変更しても答えはあっている。
   * 結果を知ってから時間を巻き戻して制約に合わせればよい。
 * 例えば、Aをを使うと10点えるが、Bを使うと50点得る。ただし、Bを使うとAが使えない。
-* 
+
+## 要素が多いときSetを使う
+
+* 配列で要素を作ると要素数が$10^8$超える場合、setで要素の座標を持っておく
+* setのin演算子はオーダ1の演算で済む
+* 例　ABC176E
+
+```python
+def resolve():
+    '''
+    code here
+    '''
+    H, W, M = [int(item) for item in input().split()]
+    targets = [[int(item) -1 for item in input().split()] for _ in range(M)]
+
+    col = [0 for _ in range(H)]
+    row = [0 for _ in range(W)]
+
+    bomb_set = set()
+    # 配列で要素を作ると要素数が$10^8$超える場合、setで要素の座標を持っておく
+
+
+    for i,j in targets:
+        col[i] += 1
+        row[j] += 1
+        bomb_set.add((i,j))
+
+    max_col = max(col)
+    max_row = max(row)
+    max_col_index = []
+    max_row_index = []
+
+    for i in range(H):
+        if col[i] == max_col:
+            max_col_index.append(i)
+
+    for i in range(W):
+        if row[i] == max_row:
+            max_row_index.append(i)
+
+    res = 0
+    for item in max_col_index:
+        for jtem in max_row_index:
+            if (item,jtem) not in bomb_set:
+                # setのin演算子はオーダ1
+                res =max_col + max_row
+                break
+        else:
+            res = max(res, max_col + max_row -1 )
+    print(res)
+
+if __name__ == "__main__":
+    resolve()
+
+```
+
+## 配列の差分で作れる数
+
+* 作れる差の最小値は配列の最大公約数
+  * 同じ倍数の配列だと倍数分の差しか作れない
+  * 素数が入っていれば、差をとり続ければ1になる
+    * ユークリッドの互除法と同じ
