@@ -734,6 +734,56 @@ print(ok)
 </ul>
 </li>
 </ul>
+<h2 id="union-find">Union-Find</h2>
+<ul>
+<li>グループ化されているか判別したり、大きさを調べたりできるデータ構造</li>
+</ul>
+<pre class="hljs"><code><div>    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UnionFind</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-comment"># 作りたい要素数nで初期化</span>
+    <span class="hljs-comment"># 使用するインスタンス変数の初期化</span>
+        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, n)</span>:</span>
+            self.n = n
+            <span class="hljs-comment"># root[x]&lt;0ならそのノードが根かつその値が木の要素数</span>
+            <span class="hljs-comment"># rootノードでその木の要素数を記録する</span>
+            self.root = [<span class="hljs-number">-1</span>]*(n+<span class="hljs-number">1</span>)
+            <span class="hljs-comment"># 木をくっつける時にアンバランスにならないように調整する</span>
+            self.rnk = [<span class="hljs-number">0</span>]*(n+<span class="hljs-number">1</span>)
+
+        <span class="hljs-comment"># ノードxのrootノードを見つける</span>
+        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">Find_Root</span><span class="hljs-params">(self, x)</span>:</span>
+            <span class="hljs-keyword">if</span>(self.root[x] &lt; <span class="hljs-number">0</span>):
+                <span class="hljs-keyword">return</span> x
+            <span class="hljs-keyword">else</span>:
+                <span class="hljs-comment"># ここで代入しておくことで、後の繰り返しを避ける</span>
+                self.root[x] = self.Find_Root(self.root[x])
+                <span class="hljs-keyword">return</span> self.root[x]
+        <span class="hljs-comment"># 木の併合、入力は併合したい各ノード</span>
+        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">Unite</span><span class="hljs-params">(self, x, y)</span>:</span>
+            <span class="hljs-comment"># 入力ノードのrootノードを見つける</span>
+            x = self.Find_Root(x)
+            y = self.Find_Root(y)
+            <span class="hljs-comment"># すでに同じ木に属していた場合</span>
+            <span class="hljs-keyword">if</span>(x == y):
+                <span class="hljs-keyword">return</span> 
+            <span class="hljs-comment"># 違う木に属していた場合rnkを見てくっつける方を決める</span>
+            <span class="hljs-keyword">elif</span>(self.rnk[x] &gt; self.rnk[y]):
+                self.root[x] += self.root[y]
+                self.root[y] = x
+
+            <span class="hljs-keyword">else</span>:
+                self.root[y] += self.root[x]
+                self.root[x] = y
+                <span class="hljs-comment"># rnkが同じ（深さに差がない場合）は1増やす</span>
+                <span class="hljs-keyword">if</span>(self.rnk[x] == self.rnk[y]):
+                    self.rnk[y] += <span class="hljs-number">1</span>
+        <span class="hljs-comment"># xとyが同じグループに属するか判断</span>
+        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">isSameGroup</span><span class="hljs-params">(self, x, y)</span>:</span>
+            <span class="hljs-keyword">return</span> self.Find_Root(x) == self.Find_Root(y)
+
+        <span class="hljs-comment"># ノードxが属する木のサイズを返す</span>
+        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">Count</span><span class="hljs-params">(self, x)</span>:</span>
+            <span class="hljs-keyword">return</span> -self.root[self.Find_Root(x)]
+</div></code></pre>
 
 </body>
 </html>
