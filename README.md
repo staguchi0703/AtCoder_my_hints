@@ -319,6 +319,16 @@ print(ok)
   * `most_common(3)`頻出top3
   * `elements()`keyを連結して出力
 
+```python
+import collections
+
+As = [1,1,2,2,2,4,4]
+counter = collections.Counter(As)
+
+for k, v in conter.items():
+    pass
+```
+
 ## Aを使うとBが使えなくなるルール
 
 * 実は分かり訳す使っておいて、後から過去にさかのぼってルールを満たすように変更しても答えはあっている。
